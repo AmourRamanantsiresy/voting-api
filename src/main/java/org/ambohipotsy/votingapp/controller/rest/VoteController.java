@@ -6,6 +6,7 @@ import org.ambohipotsy.votingapp.controller.mapper.VoteMapper;
 import org.ambohipotsy.votingapp.controller.validator.VoteValidator;
 import org.ambohipotsy.votingapp.model.rest.Vote;
 import org.ambohipotsy.votingapp.model.rest.VoteAction;
+import org.ambohipotsy.votingapp.model.rest.VoteResult;
 import org.ambohipotsy.votingapp.service.VoteActionService;
 import org.ambohipotsy.votingapp.service.VoteService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,5 +42,10 @@ public class VoteController {
     @GetMapping("")
     public List<Vote> getAll(@RequestParam(name = "name", required = false, defaultValue = "") String name) {
         return voteService.getAll(name).stream().map(voteMapper::toRest).toList();
+    }
+
+    @GetMapping("/{voteId}/result")
+    public VoteResult getResult(@PathVariable String voteId) {
+        return voteService.getResult(voteId);
     }
 }
