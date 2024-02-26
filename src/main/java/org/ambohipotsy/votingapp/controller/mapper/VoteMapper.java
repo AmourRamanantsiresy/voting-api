@@ -3,10 +3,7 @@ package org.ambohipotsy.votingapp.controller.mapper;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.model.rest.Vote;
-import org.ambohipotsy.votingapp.repository.VoteRepository;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 @AllArgsConstructor

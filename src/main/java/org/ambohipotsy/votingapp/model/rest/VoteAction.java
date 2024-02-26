@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -14,8 +15,7 @@ import java.util.List;
 @Data
 @Builder
 @ToString
-public class VoteSectionResult implements Serializable {
-    private String name;
-    private String id;
-    private List<VoteCandidateResult> voteCandidateResults;
+public class VoteAction implements Serializable {
+    private String sectionId;
+    private List<String> candidateIds;
 }

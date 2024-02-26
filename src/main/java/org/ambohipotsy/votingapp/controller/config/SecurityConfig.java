@@ -26,6 +26,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(e ->
                         e
+                                //--------------------------- VOTE ACTION MATCHER --------------------------//
+                                .requestMatchers("/vote/{voteId}/make")
+                                .permitAll()
                                 //------------------------- AUTHENTICATION MATCHER -------------------------//
                                 .requestMatchers("/auth/**")
                                 .permitAll()
