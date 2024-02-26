@@ -33,7 +33,6 @@ public class VoteCandidate {
     @ManyToOne
     @JoinColumn(name = "vote_section_id")
     private VoteSection voteSection;
-    private Integer voteCount = 0;
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;

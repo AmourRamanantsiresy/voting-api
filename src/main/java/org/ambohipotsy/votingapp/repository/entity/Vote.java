@@ -32,5 +32,4 @@ public class Vote {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
-    private Integer votersCount;
 }

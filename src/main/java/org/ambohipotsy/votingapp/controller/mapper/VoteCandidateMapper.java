@@ -28,16 +28,10 @@ public class VoteCandidateMapper {
     }
 
     public org.ambohipotsy.votingapp.repository.entity.VoteCandidate toDomain(String voteSectionId, VoteCandidate candidate) {
-        VoteSection voteSection = voteSectionRepository.findById(voteSectionId).orElseThrow(()-> new NotFoundException("Vote section with id=" + candidate.getId() + " not found."));
-        org.ambohipotsy.votingapp.repository.entity.VoteCandidate voteCandidateEntity = new org.ambohipotsy.votingapp.repository.entity.VoteCandidate();
-
-        if (candidate.getId() != null) {
-            voteCandidateEntity = voteCandidateRepository.findById(candidate.getId()).orElseThrow(() -> new NotFoundException("Vote candidate with id=" + candidate.getId() + " not found."));
-        }
+        VoteSection voteSection = voteSectionRepository.findById(voteSectionId).orElseThrow(() -> new NotFoundException("Vote section with id=" + candidate.getId() + " not found."));
 
         return org.ambohipotsy.votingapp.repository.entity.VoteCandidate.builder()
                 .voteSection(voteSection)
-                .voteCount(voteCandidateEntity.getVoteCount())
                 .picture(candidate.getPicture())
                 .name(candidate.getName())
                 .build();
