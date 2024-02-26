@@ -36,7 +36,11 @@ public class SecurityConfig {
                                 .authenticated()
                                 .requestMatchers(new SelfMatcher(HttpMethod.PUT, "/user/**"))
                                 .authenticated()
-
+                                //------------------------------ VOTE MATCHER -----------------------------//
+                                .requestMatchers("/vote/**")
+                                .authenticated()
+                                .requestMatchers("/voteSection/**")
+                                .authenticated()
                 )
                 .formLogin(AbstractHttpConfigurer::disable).
                 sessionManagement(e -> e.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
