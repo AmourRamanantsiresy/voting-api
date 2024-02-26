@@ -1,0 +1,135 @@
+openapi: "3.0.2"
+info:
+  title: Voting API
+  version: "1.0"
+servers:
+  - url: http://localhost:8080
+security:
+  - BearerAuth: []
+
+paths:
+  /auth/signup:
+    post:
+      security: []
+      tags:
+        - Security
+      operationId: signUp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignUser"
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessSecurity"
+  /auth/signin:
+    post:
+      security: []
+      tags:
+        - Security
+      operationId: signIn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignUser"
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessSecurity"
+  /user/whoami:
+    get:
+      tags:
+        - User
+      operationId: whoami
+      responses:
+        "200":
+          description: authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+components:
+  responses:
+    SuccessSecurity:
+      description: authentication successful
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/UserResponse"
+  schemas:
+    Id:
+      type: string
+      format: uuid
+    SignUser:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "john"
+        password:
+          type: string
+          format: password
+          example: password
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+          example: john
+        role:
+          type: string
+          example: ADMIN
+    UserResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        user:
+          $ref: "#/components/schemas/User"
+    VoteCandidate:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/Id"
+        name:
+          type: string
+          example: Jeanne
+        picture:
+          type: string
+          format: binary
+
+    VoteByCategory:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/Id"
+        label:
+          type: string
+          example: President
+        voteCountAllowed:
+          type: number
+          example: 1
+          description: |
+            Number of vote that one voter can do to one vote category.
+        candidate:
+          type: array
+          items:
+            $ref: "#/components/schemas/VoteCandidate"
+
+    Vote:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Vfl
+        votersCount:
+          type: number
+          example: 100
+        VoteCategories:
+          type: array
+          items:
+            $ref: "#/components/schemas/VoteByCategory"
