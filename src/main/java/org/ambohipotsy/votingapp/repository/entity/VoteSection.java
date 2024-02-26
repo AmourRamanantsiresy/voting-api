@@ -34,8 +34,8 @@ public class VoteSection {
     private String id;
 
     private String name;
-    private int voteCountAllowed;
-    @ManyToOne(cascade = CascadeType.ALL)
+    private Integer voteCountAllowed;
+    @ManyToOne
     @JoinColumn(name = "vote_id")
     private Vote vote;
     @CreationTimestamp

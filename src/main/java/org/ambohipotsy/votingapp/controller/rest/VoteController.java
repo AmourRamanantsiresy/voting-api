@@ -3,6 +3,7 @@ package org.ambohipotsy.votingapp.controller.rest;
 
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.controller.mapper.VoteMapper;
+import org.ambohipotsy.votingapp.controller.validator.VoteValidator;
 import org.ambohipotsy.votingapp.model.rest.Vote;
 import org.ambohipotsy.votingapp.service.VoteService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +21,15 @@ import java.util.List;
 public class VoteController {
     private final VoteService voteService;
     private final VoteMapper voteMapper;
+    private final VoteValidator voteValidator;
 
-    @PutMapping("/")
+    @PutMapping("")
     public Vote saveOne(@RequestBody Vote vote) {
+        voteValidator.validate(vote);
         return voteMapper.toRest(voteService.saveOne(voteMapper.toDomain(vote)));
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Vote> getAll(@RequestParam(name = "name", required = false, defaultValue = "") String name) {
         return voteService.getAll(name).stream().map(voteMapper::toRest).toList();
     }

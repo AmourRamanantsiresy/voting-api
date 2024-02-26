@@ -31,10 +31,10 @@ public class VoteCandidate {
     private String id;
     private String name;
     private String picture;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "vote_section_id")
     private VoteSection voteSection;
-    private Integer voteCount;
+    private Integer voteCount = 0;
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
