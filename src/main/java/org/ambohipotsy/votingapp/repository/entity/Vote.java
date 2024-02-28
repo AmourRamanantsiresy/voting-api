@@ -28,6 +28,7 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
+    private boolean isDone;
     private int votersCountAllowed;
     @CreationTimestamp
     @Column(updatable = false)

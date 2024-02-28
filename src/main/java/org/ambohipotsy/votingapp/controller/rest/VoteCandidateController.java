@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/voteSection/{voteSectionId}")
+@RequestMapping("/voteSection/{voteSectionId}/candidate")
 public class VoteCandidateController {
     private final VoteCandidateService voteCandidateService;
     private final VoteCandidateMapper voteCandidateMapper;
