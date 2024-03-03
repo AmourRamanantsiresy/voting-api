@@ -1,3 +1,3 @@
 alter table "vote"
     add
-        is_done bool default false;
+        if not exists is_done bool default false;

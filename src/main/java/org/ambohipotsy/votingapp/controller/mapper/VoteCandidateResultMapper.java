@@ -21,8 +21,11 @@ public class VoteCandidateResultMapper {
 
         return VoteCandidateResult.builder()
                 .votes(voteActions.size())
+                .lastName(currentVoteCandidate.getLastName())
+                .firstName(currentVoteCandidate.getFirstName())
                 .name(currentVoteCandidate.getName())
                 .id(currentVoteCandidate.getId())
+                .picture(currentVoteCandidate.getPicture())
                 .build();
     }
 }

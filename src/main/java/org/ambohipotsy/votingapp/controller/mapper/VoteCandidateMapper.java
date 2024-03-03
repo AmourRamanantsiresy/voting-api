@@ -15,12 +15,13 @@ import java.util.Optional;
 @AllArgsConstructor
 @Transactional
 public class VoteCandidateMapper {
-    private final VoteCandidateRepository voteCandidateRepository;
     private final VoteSectionRepository voteSectionRepository;
 
     public VoteCandidate toRest(org.ambohipotsy.votingapp.repository.entity.VoteCandidate vote) {
         return VoteCandidate.builder()
                 .id(vote.getId())
+                .firstName(vote.getFirstName())
+                .lastName(vote.getLastName())
                 .voteSectionId(vote.getVoteSection().getId())
                 .name(vote.getName())
                 .createdAt(vote.getCreatedAt())
@@ -33,6 +34,8 @@ public class VoteCandidateMapper {
         return org.ambohipotsy.votingapp.repository.entity.VoteCandidate.builder()
                 .voteSection(voteSection)
                 .picture(candidate.getPicture())
+                .firstName(candidate.getFirstName())
+                .lastName(candidate.getLastName())
                 .name(candidate.getName())
                 .build();
     }

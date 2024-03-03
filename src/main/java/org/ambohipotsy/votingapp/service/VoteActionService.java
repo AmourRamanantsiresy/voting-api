@@ -6,11 +6,13 @@ import org.ambohipotsy.votingapp.model.exceptions.BadRequestException;
 import org.ambohipotsy.votingapp.model.exceptions.NotFoundException;
 import org.ambohipotsy.votingapp.model.rest.VoteAction;
 import org.ambohipotsy.votingapp.model.rest.VoteCandidateResult;
+import org.ambohipotsy.votingapp.repository.SectionVotersActionRepository;
 import org.ambohipotsy.votingapp.repository.VoteActionRepository;
 import org.ambohipotsy.votingapp.repository.VoteCandidateRepository;
 import org.ambohipotsy.votingapp.repository.VoteRepository;
 import org.ambohipotsy.votingapp.repository.VoteSectionRepository;
 import org.ambohipotsy.votingapp.repository.VotersActionRepository;
+import org.ambohipotsy.votingapp.repository.entity.SectionVotersAction;
 import org.ambohipotsy.votingapp.repository.entity.Vote;
 import org.ambohipotsy.votingapp.repository.entity.VoteCandidate;
 import org.ambohipotsy.votingapp.repository.entity.VoteSection;
@@ -26,6 +28,7 @@ public class VoteActionService {
     private final VoteSectionRepository voteSectionRepository;
     private final VoteCandidateRepository voteCandidateRepository;
     private final VotersActionRepository votersActionRepository;
+    private final SectionVotersActionRepository sectionVotersActionRepository;
     private final VoteRepository voteRepository;
 
     @Transactional
@@ -44,6 +47,9 @@ public class VoteActionService {
         if (voteSection.getVoteCountAllowed() < voteAction.getCandidateIds().size()) {
             throw new BadRequestException("Should only vote for " + voteSection.getVoteCountAllowed() + " candidate at least.");
         }
+        this.sectionVotersActionRepository.save(SectionVotersAction.builder()
+                .voteSection(voteSection)
+                .build());
         voteAction.getCandidateIds().forEach(this::voteOneCandidate);
     }
 

@@ -35,6 +35,8 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers(HttpMethod.GET, "/vote")
                                 .permitAll()
+                                .requestMatchers(HttpMethod.GET, "/vote/{voteId}")
+                                .permitAll()
                                 //------------------------- AUTHENTICATION MATCHER -------------------------//
                                 .requestMatchers("/auth/**")
                                 .permitAll()

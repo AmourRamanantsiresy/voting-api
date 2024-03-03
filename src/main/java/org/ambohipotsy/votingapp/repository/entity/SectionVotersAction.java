@@ -23,19 +23,15 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Builder
 @Entity
-@Table(name = "\"vote_candidate\"")
-public class VoteCandidate {
+@Table(name = "\"section_voters_action\"")
+public class SectionVotersAction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private String name;
-    private String picture;
-    private String firstName;
-    private String lastName;
-    @ManyToOne
-    @JoinColumn(name = "vote_section_id")
-    private VoteSection voteSection;
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "vote_section_id")
+    private VoteSection voteSection;
 }

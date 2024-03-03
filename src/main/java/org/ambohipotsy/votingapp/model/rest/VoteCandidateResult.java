@@ -16,5 +16,8 @@ import java.io.Serializable;
 public class VoteCandidateResult implements Serializable {
     private String name;
     private String id;
+    private String picture;
+    private String firstName;
+    private String lastName;
     private Integer votes;
 }

@@ -48,4 +48,9 @@ public class VoteController {
     public VoteResult getResult(@PathVariable String voteId) {
         return voteService.getResult(voteId);
     }
+
+    @GetMapping("/{voteId}")
+    public Vote getOne(@PathVariable String voteId) {
+        return voteMapper.toRest(voteService.getOne(voteId));
+    }
 }

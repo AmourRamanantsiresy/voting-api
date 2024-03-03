@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 public class VoteCandidate implements Serializable {
     private String id;
     private String name;
+    private String firstName;
+    private String lastName;
     private String picture;
     private String voteSectionId;
     private LocalDateTime createdAt;

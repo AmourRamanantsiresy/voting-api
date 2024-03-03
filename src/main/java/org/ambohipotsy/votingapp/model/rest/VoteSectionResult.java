@@ -17,5 +17,7 @@ import java.util.List;
 public class VoteSectionResult implements Serializable {
     private String name;
     private String id;
+    private Integer voteCountAllowed;
+    private Integer votersCount;
     private List<VoteCandidateResult> voteCandidateResults;
 }

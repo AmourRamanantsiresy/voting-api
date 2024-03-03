@@ -30,6 +30,7 @@ public class VoteResultMapper {
         return VoteResult.builder()
                 .id(vote.getId())
                 .name(vote.getName())
+                .createdAt(vote.getCreatedAt())
                 .votersCount(votersActions.size())
                 .sectionResults(voteSectionResults)
                 .build();
