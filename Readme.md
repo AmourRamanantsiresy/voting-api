@@ -124,3 +124,70 @@ The admin will create a `vote` that will be wrap a list of vote section.
      }
    ]
    ```
+
+# Results
+
+1. Get vote results
+
+   | **Method** | **Path**                | **Security** |
+   | ---------- | ----------------------- | ------------ |
+   | **GET**    | `/vote/{voteId}/result` | `false`      |
+
+   - **Response**
+
+   ```json
+   {
+     "id": "7aca88de-6ea9-4748-95c8-a8533f8ecd81",
+     "name": "VFL",
+     "votersCount": "100",
+     "createdAt": "2024-03-05T00:18:50.650796",
+     "sectionResults": [
+       {
+         "id": "e87550bb-2f0a-4508-ac61-c2c61d12c66a",
+         "name": "President",
+         "voteCountAllowed": 1,
+         "votersCount": 98,
+         "whiteVoteCount": 2,
+         "needSecondVote": false,
+         "voteCandidateWinners": [
+           {
+             "name": "Luc",
+             "id": "6b59d90e-de02-4a51-891a-50e9f5d5dcf4",
+             "picture": null,
+             "firstName": null,
+             "lastName": null,
+             "votes": 51
+           }
+         ],
+         "voteCandidateResults": [
+           {
+             "name": "Luc",
+             "id": "6b59d90e-de02-4a51-891a-50e9f5d5dcf4",
+             "picture": null,
+             "firstName": null,
+             "lastName": null,
+             "votes": 51
+           },
+           {
+             "name": "Max",
+             "id": "adc005d6-8cef-4edb-8d94-d9f76e325a43",
+             "picture": null,
+             "firstName": null,
+             "lastName": null,
+             "votes": 47
+           }
+         ]
+       }
+     ]
+   }
+   ```
+
+# Next Vote
+
+1. Create next vote
+
+    If there is a vote section where no one of the candidates have got +50%, this endpoint will create new vote with the concerned vote section and with the winners of the same vote section
+
+    | **Method** | **Path**              | **Security** |
+    | ---------- | --------------------- | ------------ |
+    | **PUT**    | `/vote/{voteId}/next` | `true`       |
