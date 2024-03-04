@@ -4,12 +4,10 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.model.exceptions.NotFoundException;
 import org.ambohipotsy.votingapp.model.rest.VoteCandidate;
-import org.ambohipotsy.votingapp.repository.VoteCandidateRepository;
 import org.ambohipotsy.votingapp.repository.VoteSectionRepository;
 import org.ambohipotsy.votingapp.repository.entity.VoteSection;
+import org.ambohipotsy.votingapp.utils.ImageUtils;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -24,6 +22,7 @@ public class VoteCandidateMapper {
                 .lastName(vote.getLastName())
                 .voteSectionId(vote.getVoteSection().getId())
                 .name(vote.getName())
+                .picture(vote.getPicture())
                 .createdAt(vote.getCreatedAt())
                 .build();
     }
