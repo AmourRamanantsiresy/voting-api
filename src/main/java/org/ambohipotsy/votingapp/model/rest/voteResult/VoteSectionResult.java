@@ -19,5 +19,7 @@ public class VoteSectionResult implements Serializable {
   private Integer voteCountAllowed;
   private Integer votersCount;
   private Integer whiteVoteCount;
+  private boolean needSecondVote;
+  private List<VoteCandidateResult> voteCandidateWinners;
   private List<VoteCandidateResult> voteCandidateResults;
 }
