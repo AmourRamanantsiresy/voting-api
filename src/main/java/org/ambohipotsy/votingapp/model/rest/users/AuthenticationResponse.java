@@ -1,4 +1,4 @@
-package org.ambohipotsy.votingapp.model.rest;
+package org.ambohipotsy.votingapp.model.rest.users;
 
 
 import lombok.AllArgsConstructor;
@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.ambohipotsy.votingapp.model.rest.users.User;
 
 @AllArgsConstructor
 @NoArgsConstructor

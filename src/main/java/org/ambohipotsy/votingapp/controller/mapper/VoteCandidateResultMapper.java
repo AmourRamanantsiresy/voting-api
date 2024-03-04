@@ -2,11 +2,10 @@ package org.ambohipotsy.votingapp.controller.mapper;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.ambohipotsy.votingapp.model.rest.VoteCandidateResult;
+import org.ambohipotsy.votingapp.model.rest.voteResult.VoteCandidateResult;
 import org.ambohipotsy.votingapp.repository.VoteActionRepository;
 import org.ambohipotsy.votingapp.repository.entity.VoteAction;
 import org.ambohipotsy.votingapp.repository.entity.VoteCandidate;
-import org.ambohipotsy.votingapp.utils.ImageUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

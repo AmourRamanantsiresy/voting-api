@@ -1,4 +1,4 @@
-package org.ambohipotsy.votingapp.model.rest;
+package org.ambohipotsy.votingapp.model.rest.voteResult;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

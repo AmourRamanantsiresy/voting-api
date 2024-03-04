@@ -3,8 +3,8 @@ package org.ambohipotsy.votingapp.controller.mapper;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.ambohipotsy.votingapp.model.rest.VoteResult;
-import org.ambohipotsy.votingapp.model.rest.VoteSectionResult;
+import org.ambohipotsy.votingapp.model.rest.voteResult.VoteResult;
+import org.ambohipotsy.votingapp.model.rest.voteResult.VoteSectionResult;
 import org.ambohipotsy.votingapp.repository.VoteSectionRepository;
 import org.ambohipotsy.votingapp.repository.VotersActionRepository;
 import org.ambohipotsy.votingapp.repository.entity.Vote;

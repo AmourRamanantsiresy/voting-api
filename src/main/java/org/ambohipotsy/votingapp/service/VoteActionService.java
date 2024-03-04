@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.model.exceptions.BadRequestException;
 import org.ambohipotsy.votingapp.model.exceptions.NotFoundException;
 import org.ambohipotsy.votingapp.model.rest.VoteAction;
-import org.ambohipotsy.votingapp.model.rest.VoteCandidateResult;
 import org.ambohipotsy.votingapp.repository.SectionVotersActionRepository;
 import org.ambohipotsy.votingapp.repository.VoteActionRepository;
 import org.ambohipotsy.votingapp.repository.VoteCandidateRepository;

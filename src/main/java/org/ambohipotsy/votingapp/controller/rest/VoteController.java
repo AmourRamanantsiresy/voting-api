@@ -6,7 +6,7 @@ import org.ambohipotsy.votingapp.controller.mapper.VoteMapper;
 import org.ambohipotsy.votingapp.controller.validator.VoteValidator;
 import org.ambohipotsy.votingapp.model.rest.Vote;
 import org.ambohipotsy.votingapp.model.rest.VoteAction;
-import org.ambohipotsy.votingapp.model.rest.VoteResult;
+import org.ambohipotsy.votingapp.model.rest.voteResult.VoteResult;
 import org.ambohipotsy.votingapp.service.VoteActionService;
 import org.ambohipotsy.votingapp.service.VoteService;
 import org.springframework.web.bind.annotation.GetMapping;

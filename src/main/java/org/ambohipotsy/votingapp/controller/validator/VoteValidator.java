@@ -3,8 +3,6 @@ package org.ambohipotsy.votingapp.controller.validator;
 
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.model.exceptions.BadRequestException;
-import org.ambohipotsy.votingapp.model.rest.SignUser;
-import org.ambohipotsy.votingapp.model.rest.User;
 import org.ambohipotsy.votingapp.model.rest.Vote;
 import org.springframework.stereotype.Component;
 

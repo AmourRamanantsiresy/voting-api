@@ -4,20 +4,14 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.controller.mapper.VoteResultMapper;
 import org.ambohipotsy.votingapp.model.exceptions.NotFoundException;
-import org.ambohipotsy.votingapp.model.rest.VoteCandidate;
-import org.ambohipotsy.votingapp.model.rest.VoteCandidateResult;
-import org.ambohipotsy.votingapp.model.rest.VoteResult;
+import org.ambohipotsy.votingapp.model.rest.voteResult.VoteResult;
 import org.ambohipotsy.votingapp.repository.VoteCandidateRepository;
 import org.ambohipotsy.votingapp.repository.VoteRepository;
 import org.ambohipotsy.votingapp.repository.VoteSectionRepository;
 import org.ambohipotsy.votingapp.repository.entity.Vote;
-import org.ambohipotsy.votingapp.repository.entity.VoteSection;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

@@ -3,7 +3,7 @@ package org.ambohipotsy.votingapp.service;
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.controller.mapper.UserMapper;
 import org.ambohipotsy.votingapp.model.exceptions.NotFoundException;
-import org.ambohipotsy.votingapp.model.rest.AuthenticationResponse;
+import org.ambohipotsy.votingapp.model.rest.users.AuthenticationResponse;
 import org.ambohipotsy.votingapp.repository.UserRepository;
 import org.ambohipotsy.votingapp.repository.entity.User;
 import org.springframework.security.authentication.AuthenticationManager;

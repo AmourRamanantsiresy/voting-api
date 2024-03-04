@@ -3,8 +3,8 @@ package org.ambohipotsy.votingapp.controller.mapper;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.model.exceptions.NotFoundException;
-import org.ambohipotsy.votingapp.model.rest.SignUser;
-import org.ambohipotsy.votingapp.model.rest.User;
+import org.ambohipotsy.votingapp.model.rest.users.SignUser;
+import org.ambohipotsy.votingapp.model.rest.users.User;
 import org.ambohipotsy.votingapp.repository.UserRepository;
 import org.springframework.stereotype.Component;
 

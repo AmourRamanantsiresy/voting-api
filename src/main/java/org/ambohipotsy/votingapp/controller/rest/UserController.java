@@ -2,7 +2,7 @@ package org.ambohipotsy.votingapp.controller.rest;
 
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.controller.mapper.UserMapper;
-import org.ambohipotsy.votingapp.model.rest.User;
+import org.ambohipotsy.votingapp.model.rest.users.User;
 import org.ambohipotsy.votingapp.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
