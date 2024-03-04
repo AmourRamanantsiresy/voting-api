@@ -3,6 +3,7 @@ package org.ambohipotsy.votingapp.controller.rest;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.controller.mapper.VoteMapper;
+import org.ambohipotsy.votingapp.controller.validator.NextVoteValidator;
 import org.ambohipotsy.votingapp.controller.validator.VoteValidator;
 import org.ambohipotsy.votingapp.model.rest.Vote;
 import org.ambohipotsy.votingapp.model.rest.VoteAction;
@@ -27,6 +28,7 @@ public class VoteController {
   private final VoteMapper voteMapper;
   private final VoteValidator voteValidator;
   private final NextVoteService nextVoteService;
+  private final NextVoteValidator nextVoteValidator;
 
   @PutMapping("")
   public Vote saveOne(@RequestBody Vote vote) {
@@ -41,6 +43,7 @@ public class VoteController {
 
   @PutMapping("/{voteId}/next")
   public void nextVote(@PathVariable String voteId) {
+    nextVoteValidator.validate(voteId);
     nextVoteService.createSecondVote(voteId);
   }
 
