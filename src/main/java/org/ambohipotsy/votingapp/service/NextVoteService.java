@@ -97,9 +97,9 @@ public class NextVoteService {
 
   private VoteSection getAssociatedVoteSection(
       String voteResultName, List<VoteSection> voteSections) {
-    for (int i = 0; i < voteSections.size(); i++) {
-      if (voteSections.get(i).getName().equals(voteResultName)) {
-        return voteSections.get(1);
+    for (VoteSection voteSection : voteSections) {
+      if (voteSection.getName().equals(voteResultName)) {
+        return voteSection;
       }
     }
     return null;
@@ -112,7 +112,7 @@ public class NextVoteService {
     }
     return matcher.replaceAll(
         e -> {
-          int next = Integer.valueOf(e.group(2)) + 1;
+          int next = Integer.parseInt(e.group(2)) + 1;
           return e.group(1) + next;
         });
   }
