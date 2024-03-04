@@ -2,7 +2,7 @@ create table if not exists "vote_candidate"
 (
     id              varchar
         constraint vote_candidate_pk primary key default uuid_generate_v4(),
-    name            varchar unique not null,
+    name            varchar not null,
     picture         text,
     created_at      timestamp                    default current_timestamp,
     vote_section_id varchar        not null,
