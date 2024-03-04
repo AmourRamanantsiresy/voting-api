@@ -7,6 +7,7 @@ import org.ambohipotsy.votingapp.controller.validator.VoteValidator;
 import org.ambohipotsy.votingapp.model.rest.Vote;
 import org.ambohipotsy.votingapp.model.rest.VoteAction;
 import org.ambohipotsy.votingapp.model.rest.voteResult.VoteResult;
+import org.ambohipotsy.votingapp.service.NextVoteService;
 import org.ambohipotsy.votingapp.service.VoteActionService;
 import org.ambohipotsy.votingapp.service.VoteService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class VoteController {
   private final VoteActionService voteActionService;
   private final VoteMapper voteMapper;
   private final VoteValidator voteValidator;
+  private final NextVoteService nextVoteService;
 
   @PutMapping("")
   public Vote saveOne(@RequestBody Vote vote) {
@@ -35,6 +37,11 @@ public class VoteController {
   @PutMapping("/{voteId}/make")
   public void makeVote(@PathVariable String voteId, @RequestBody List<VoteAction> voteActions) {
     voteActionService.makeVote(voteId, voteActions);
+  }
+
+  @PutMapping("/{voteId}/next")
+  public void nextVote(@PathVariable String voteId, @RequestBody List<VoteAction> voteActions) {
+    nextVoteService.createSecondVote(voteId);
   }
 
   @GetMapping("")
