@@ -12,30 +12,33 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Transactional
 public class UserMapper {
-    private UserRepository userRepository;
+  private UserRepository userRepository;
 
-    public User toRest(org.ambohipotsy.votingapp.repository.entity.User user) {
-        return User.builder()
-                .id(user.getId())
-                .role(user.getDEFAULT_AUTHORITY())
-                .username(user.getUsername())
-                .build();
-    }
+  public User toRest(org.ambohipotsy.votingapp.repository.entity.User user) {
+    return User.builder()
+        .id(user.getId())
+        .role(user.getDEFAULT_AUTHORITY())
+        .username(user.getUsername())
+        .build();
+  }
 
-    public org.ambohipotsy.votingapp.repository.entity.User toDomain(User user) {
-        org.ambohipotsy.votingapp.repository.entity.User currentUser = userRepository.findById(user.getId()).orElseThrow(() -> new NotFoundException("User with id = " + user.getId() + " not found."));
+  public org.ambohipotsy.votingapp.repository.entity.User toDomain(User user) {
+    org.ambohipotsy.votingapp.repository.entity.User currentUser =
+        userRepository
+            .findById(user.getId())
+            .orElseThrow(
+                () -> new NotFoundException("User with id = " + user.getId() + " not found."));
 
-        currentUser.setId(user.getId());
-        currentUser.setUsername(user.getUsername());
+    currentUser.setId(user.getId());
+    currentUser.setUsername(user.getUsername());
 
-        return currentUser;
-    }
+    return currentUser;
+  }
 
-
-    public org.ambohipotsy.votingapp.repository.entity.User toDomain(SignUser user) {
-        return org.ambohipotsy.votingapp.repository.entity.User.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .build();
-    }
+  public org.ambohipotsy.votingapp.repository.entity.User toDomain(SignUser user) {
+    return org.ambohipotsy.votingapp.repository.entity.User.builder()
+        .username(user.getUsername())
+        .password(user.getPassword())
+        .build();
+  }
 }

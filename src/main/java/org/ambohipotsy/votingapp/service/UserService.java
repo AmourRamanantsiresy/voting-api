@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UserService {
-    private UserRepository userRepository;
+  private UserRepository userRepository;
 
-    public User getOne(String userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("User with id = " + userId + " not found"));
-    }
-    public User saveOne(User user) {
-        return userRepository.save(user);
-    }
+  public User getOne(String userId) {
+    return userRepository
+        .findById(userId)
+        .orElseThrow(() -> new NotFoundException("User with id = " + userId + " not found"));
+  }
+
+  public User saveOne(User user) {
+    return userRepository.save(user);
+  }
 }

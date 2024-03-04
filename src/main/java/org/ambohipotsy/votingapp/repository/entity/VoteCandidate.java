@@ -8,14 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -25,17 +24,20 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "\"vote_candidate\"")
 public class VoteCandidate {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-    private String name;
-    private String picture;
-    private String firstName;
-    private String lastName;
-    @ManyToOne
-    @JoinColumn(name = "vote_section_id")
-    private VoteSection voteSection;
-    @CreationTimestamp
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private String id;
+
+  private String name;
+  private String picture;
+  private String firstName;
+  private String lastName;
+
+  @ManyToOne
+  @JoinColumn(name = "vote_section_id")
+  private VoteSection voteSection;
+
+  @CreationTimestamp
+  @Column(updatable = false)
+  private LocalDateTime createdAt;
 }

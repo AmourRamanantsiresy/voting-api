@@ -9,20 +9,20 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Transactional
 public class VoteMapper {
-    public Vote toRest(org.ambohipotsy.votingapp.repository.entity.Vote vote) {
-        return Vote.builder()
-                .votersCountAllowed(vote.getVotersCountAllowed())
-                .id(vote.getId())
-                .name(vote.getName())
-                .createdAt(vote.getCreatedAt())
-                .build();
-    }
+  public Vote toRest(org.ambohipotsy.votingapp.repository.entity.Vote vote) {
+    return Vote.builder()
+        .votersCountAllowed(vote.getVotersCountAllowed())
+        .id(vote.getId())
+        .name(vote.getName())
+        .createdAt(vote.getCreatedAt())
+        .build();
+  }
 
-    public org.ambohipotsy.votingapp.repository.entity.Vote toDomain(Vote vote) {
-        return org.ambohipotsy.votingapp.repository.entity.Vote.builder()
-                .votersCountAllowed(vote.getVotersCountAllowed())
-                .name(vote.getName())
-                .id(vote.getId())
-                .build();
-    }
+  public org.ambohipotsy.votingapp.repository.entity.Vote toDomain(Vote vote) {
+    return org.ambohipotsy.votingapp.repository.entity.Vote.builder()
+        .votersCountAllowed(vote.getVotersCountAllowed())
+        .name(vote.getName())
+        .id(vote.getId())
+        .build();
+  }
 }

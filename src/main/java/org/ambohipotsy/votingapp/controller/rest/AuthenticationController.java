@@ -15,23 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
-    private UserMapper userMapper;
-    private UserValidator userValidator;
-    private AuthenticationService authenticationService;
+  private UserMapper userMapper;
+  private UserValidator userValidator;
+  private AuthenticationService authenticationService;
 
-    @PostMapping("/signup")
-    public AuthenticationResponse singUp(
-            @RequestBody SignUser signUser
-    ) {
-        userValidator.validate(signUser);
-        return authenticationService.signUp(userMapper.toDomain(signUser));
-    }
+  @PostMapping("/signup")
+  public AuthenticationResponse singUp(@RequestBody SignUser signUser) {
+    userValidator.validate(signUser);
+    return authenticationService.signUp(userMapper.toDomain(signUser));
+  }
 
-    @PostMapping("/signin")
-    public AuthenticationResponse signIn(
-            @RequestBody SignUser signUser
-    ) {
-        userValidator.validate(signUser);
-        return authenticationService.signIn(userMapper.toDomain(signUser));
-    }
+  @PostMapping("/signin")
+  public AuthenticationResponse signIn(@RequestBody SignUser signUser) {
+    userValidator.validate(signUser);
+    return authenticationService.signIn(userMapper.toDomain(signUser));
+  }
 }

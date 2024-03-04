@@ -16,22 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-    private UserService userService;
-    private UserMapper userMapper;
+  private UserService userService;
+  private UserMapper userMapper;
 
-    @GetMapping("/{id}")
-    public User getOne(@PathVariable String id) {
-        return userMapper.toRest(userService.getOne(id));
-    }
+  @GetMapping("/{id}")
+  public User getOne(@PathVariable String id) {
+    return userMapper.toRest(userService.getOne(id));
+  }
 
-    @PutMapping("/{id}")
-    public User saveOne(@PathVariable String id, @RequestBody User user) {
-        user.setId(id);
-        return userMapper.toRest(userService.saveOne(userMapper.toDomain(user)));
-    }
+  @PutMapping("/{id}")
+  public User saveOne(@PathVariable String id, @RequestBody User user) {
+    user.setId(id);
+    return userMapper.toRest(userService.saveOne(userMapper.toDomain(user)));
+  }
 
-    @GetMapping("/whoami")
-    public User whoAmI(@RequestAttribute("currentUser") org.ambohipotsy.votingapp.repository.entity.User user) {
-        return userMapper.toRest(user);
-    }
+  @GetMapping("/whoami")
+  public User whoAmI(
+      @RequestAttribute("currentUser") org.ambohipotsy.votingapp.repository.entity.User user) {
+    return userMapper.toRest(user);
+  }
 }

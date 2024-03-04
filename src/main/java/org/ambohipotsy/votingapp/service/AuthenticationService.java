@@ -14,30 +14,36 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class AuthenticationService {
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
-    private JwtService jwtService;
-    private AuthenticationManager authenticationManager;
-    private UserMapper userMapper;
+  private UserRepository userRepository;
+  private PasswordEncoder passwordEncoder;
+  private JwtService jwtService;
+  private AuthenticationManager authenticationManager;
+  private UserMapper userMapper;
 
-    public AuthenticationResponse signUp(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User savedUser = userRepository.save(user);
-        String jwtToken = jwtService.generateToken(savedUser);
-        return AuthenticationResponse.builder().token(jwtToken).user(userMapper.toRest(savedUser)).build();
-    }
+  public AuthenticationResponse signUp(User user) {
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    User savedUser = userRepository.save(user);
+    String jwtToken = jwtService.generateToken(savedUser);
+    return AuthenticationResponse.builder()
+        .token(jwtToken)
+        .user(userMapper.toRest(savedUser))
+        .build();
+  }
 
-    public AuthenticationResponse signIn(User user) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        user.getUsername(),
-                        user.getPassword()
-                )
-        );
-        User userReference = userRepository
-                .findByUsername(user.getUsername())
-                .orElseThrow(() -> new NotFoundException("User with username = " + user.getUsername() + " not found."));
-        String jwtToken = jwtService.generateToken(userReference);
-        return AuthenticationResponse.builder().user(userMapper.toRest(userReference)).token(jwtToken).build();
-    }
+  public AuthenticationResponse signIn(User user) {
+    authenticationManager.authenticate(
+        new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+    User userReference =
+        userRepository
+            .findByUsername(user.getUsername())
+            .orElseThrow(
+                () ->
+                    new NotFoundException(
+                        "User with username = " + user.getUsername() + " not found."));
+    String jwtToken = jwtService.generateToken(userReference);
+    return AuthenticationResponse.builder()
+        .user(userMapper.toRest(userReference))
+        .token(jwtToken)
+        .build();
+  }
 }
