@@ -40,7 +40,7 @@ public class VoteController {
   }
 
   @PutMapping("/{voteId}/next")
-  public void nextVote(@PathVariable String voteId, @RequestBody List<VoteAction> voteActions) {
+  public void nextVote(@PathVariable String voteId) {
     nextVoteService.createSecondVote(voteId);
   }
 
