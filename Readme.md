@@ -186,8 +186,8 @@ The admin will create a `vote` that will be wrap a list of vote section.
 
 1. Create next vote
 
-    If there is a vote section where no one of the candidates have got +50%, this endpoint will create new vote with the concerned vote section and with the winners of the same vote section
+   If there is a vote section where no one of the candidates have got +50%, this endpoint will create new vote with the concerned vote section and with the winners of the same vote section
 
-    | **Method** | **Path**              | **Security** |
-    | ---------- | --------------------- | ------------ |
-    | **PUT**    | `/vote/{voteId}/next` | `true`       |
+   | **Method** | **Path**              | **Security** |
+   | ---------- | --------------------- | ------------ |
+   | **PUT**    | `/vote/{voteId}/next` | `true`       |
