@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class VoteCandidateResultMapper {
   private final VoteActionRepository voteActionRepository;
 
-  public VoteCandidateResult toRest(VoteCandidate currentVoteCandidate) {
+  public VoteCandidateResult toRest(VoteCandidate currentVoteCandidate, Integer totalVoters) {
     List<VoteAction> voteActions =
         voteActionRepository.findAllByVoteCandidateId(currentVoteCandidate.getId());
 
@@ -25,6 +25,7 @@ public class VoteCandidateResultMapper {
         .firstName(currentVoteCandidate.getFirstName())
         .name(currentVoteCandidate.getName())
         .id(currentVoteCandidate.getId())
+        .votesInPercent((double) (100 * voteActions.size()) / totalVoters)
         .picture(currentVoteCandidate.getPicture())
         .build();
   }

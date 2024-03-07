@@ -30,7 +30,7 @@ public class VoteSectionResultMapper {
         sectionVotersActionRepository.findAllByVoteSectionId(voteSection.getId());
     List<VoteCandidateResult> voteCandidateResults =
         voteCandidates.stream()
-            .map(voteCandidateResultMapper::toRest)
+            .map(voteCandidate -> voteCandidateResultMapper.toRest(voteCandidate, totalVotersCount))
             .sorted(Comparator.comparingInt(VoteCandidateResult::getVotes).reversed())
             .toList();
     List<VoteCandidateResult> voteCandidateWinners =

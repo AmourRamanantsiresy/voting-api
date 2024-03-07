@@ -19,4 +19,5 @@ public class VoteCandidateResult implements Serializable {
   private String firstName;
   private String lastName;
   private Integer votes;
+  private double votesInPercent;
 }
