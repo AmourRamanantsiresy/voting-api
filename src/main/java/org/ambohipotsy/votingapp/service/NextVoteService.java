@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.AllArgsConstructor;
+import org.ambohipotsy.votingapp.model.exceptions.BadRequestException;
 import org.ambohipotsy.votingapp.model.rest.voteResult.VoteResult;
 import org.ambohipotsy.votingapp.model.rest.voteResult.VoteSectionResult;
 import org.ambohipotsy.votingapp.repository.VoteCandidateRepository;
@@ -30,7 +31,7 @@ public class NextVoteService {
     VoteResult voteResult = this.voteService.getResult(voteId);
     Vote voteNext = this.getSecondVote(voteResult);
     if (voteNext == null) {
-      return;
+      throw new BadRequestException("The vote with id=" + voteId + " does not need 2nd tour.");
     }
     List<VoteSection> voteSectionsNext =
         this.getSecondVoteSections(voteResult.getSectionResults(), voteNext);
