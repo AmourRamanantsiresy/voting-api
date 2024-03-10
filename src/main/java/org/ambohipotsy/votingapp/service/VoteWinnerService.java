@@ -26,12 +26,18 @@ public class VoteWinnerService {
     if (voteCandidateResults.isEmpty()) return voteCandidateWinners;
 
     voteCandidateWinners.add(currentSortedVoteCandidateResult.get(0));
+    Integer currentVotersCountAllowed = votersCountAllowed;
 
     for (int i = 1; i < currentSortedVoteCandidateResult.size(); i++) {
       VoteCandidateResult currentVoteCandidateResult = currentSortedVoteCandidateResult.get(i);
       VoteCandidateResult lastVoteCandidateWinner =
           voteCandidateWinners.get(voteCandidateWinners.size() - 1);
-      if (voteCandidateWinners.size() < votersCountAllowed) {
+
+      if (i <= votersCountAllowed && lastVoteCandidateWinner.getVotes() * 2 < totalVotersCount) {
+        currentVotersCountAllowed++;
+      }
+
+      if (voteCandidateWinners.size() < currentVotersCountAllowed) {
         voteCandidateWinners.add(currentVoteCandidateResult);
       } else if (Objects.equals(
           currentVoteCandidateResult.getVotes(), lastVoteCandidateWinner.getVotes())) {
@@ -40,16 +46,6 @@ public class VoteWinnerService {
         break;
       }
     }
-
-    for (int i = 0; i < voteCandidateWinners.size(); i++) {
-      VoteCandidateResult currentVoteCandidateWinner = voteCandidateWinners.get(i);
-      if (currentVoteCandidateWinner.getVotes() * 2 <= totalVotersCount
-          && currentSortedVoteCandidateResult.size() > i + voteCandidateWinners.size()) {
-        voteCandidateWinners.add(
-            currentSortedVoteCandidateResult.get(i + voteCandidateWinners.size()));
-      }
-    }
-
     return voteCandidateWinners;
   }
 }
