@@ -31,6 +31,8 @@ public class SecurityConfig {
                     .permitAll()
                     .requestMatchers("/vote/{voteId}/next")
                     .permitAll()
+                    .requestMatchers("/vote/{voteId}/pv")
+                    .permitAll()
                     .requestMatchers(HttpMethod.GET, "/vote/{voteId}/voteSection")
                     .permitAll()
                     .requestMatchers(HttpMethod.GET, "/voteSection/{voteSectionId}/candidate")

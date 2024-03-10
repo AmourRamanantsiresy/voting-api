@@ -1,6 +1,7 @@
 package org.ambohipotsy.votingapp.controller.mapper;
 
 import jakarta.transaction.Transactional;
+import java.text.DecimalFormat;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.model.rest.voteResult.VoteCandidateResult;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Transactional
 public class VoteCandidateResultMapper {
+  private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
   private final VoteActionRepository voteActionRepository;
 
   public VoteCandidateResult toRest(VoteCandidate currentVoteCandidate, Integer totalVoters) {
@@ -25,7 +27,8 @@ public class VoteCandidateResultMapper {
         .firstName(currentVoteCandidate.getFirstName())
         .name(currentVoteCandidate.getName())
         .id(currentVoteCandidate.getId())
-        .votesInPercent((double) (100 * voteActions.size()) / totalVoters)
+        .votesInPercent(
+            Double.parseDouble(decimalFormat.format((100L * voteActions.size()) / totalVoters)))
         .picture(currentVoteCandidate.getPicture())
         .build();
   }
