@@ -109,7 +109,7 @@ public class NextVoteService {
   public String getVoteNewName(String name) {
     Matcher matcher = this.NAME_PATTERN.matcher(name);
     if (!matcher.find()) {
-      return name + " vote-2";
+      return name + " FIHODINAN-2";
     }
     return matcher.replaceAll(
         e -> {
