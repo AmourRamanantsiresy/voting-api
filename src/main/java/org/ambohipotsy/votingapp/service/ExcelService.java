@@ -68,7 +68,7 @@ public class ExcelService {
                           lastRow.addAndGet(1),
                           List.of(
                               new ExcelCell("SAMPANA:", 1, generalTitleStyle),
-                              new ExcelCell(voteSectionResult.getName(), 2, null))),
+                              new ExcelCell(voteResult.getName(), 2, null))),
                       new ExcelRow(
                           lastRow.addAndGet(1),
                           List.of(
