@@ -16,48 +16,51 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig {
-  private JwtAuthenticationFilter jwtAuthFilter;
-  private AuthenticationProvider authenticationProvider;
+    private JwtAuthenticationFilter jwtAuthFilter;
+    private AuthenticationProvider authenticationProvider;
 
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity
-        .csrf(AbstractHttpConfigurer::disable)
-        .authorizeHttpRequests(
-            e ->
-                e
-                    // --------------------------- VOTE ACTION MATCHER --------------------------//
-                    .requestMatchers("/vote/{voteId}/make")
-                    .permitAll()
-                    .requestMatchers("/vote/{voteId}/next")
-                    .permitAll()
-                    .requestMatchers("/vote/{voteId}/pv")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.GET, "/vote/{voteId}/voteSection**")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.GET, "/voteSection/{voteSectionId}/candidate**")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.GET, "/vote")
-                    .permitAll()
-                    .requestMatchers(HttpMethod.GET, "/vote/{voteId}")
-                    .permitAll()
-                    // ------------------------- AUTHENTICATION MATCHER -------------------------//
-                    .requestMatchers("/auth/**")
-                    .permitAll()
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        e ->
+                                e
+                                        // ------------------------------- OTP MATCHER ------------------------------//
+                                        .requestMatchers("/otp/generate")
+                                        .permitAll()
+                                        // --------------------------- VOTE ACTION MATCHER --------------------------//
+                                        .requestMatchers("/vote/{voteId}/make")
+                                        .permitAll()
+                                        .requestMatchers("/vote/{voteId}/next")
+                                        .permitAll()
+                                        .requestMatchers("/vote/{voteId}/pv")
+                                        .permitAll()
+                                        .requestMatchers(HttpMethod.GET, "/vote/{voteId}/voteSection**")
+                                        .permitAll()
+                                        .requestMatchers(HttpMethod.GET, "/voteSection/{voteSectionId}/candidate**")
+                                        .permitAll()
+                                        .requestMatchers(HttpMethod.GET, "/vote")
+                                        .permitAll()
+                                        .requestMatchers(HttpMethod.GET, "/vote/{voteId}")
+                                        .permitAll()
+                                        // ------------------------- AUTHENTICATION MATCHER -------------------------//
+                                        .requestMatchers("/auth/**")
+                                        .permitAll()
 
-                    // ------------------------------ USER MATCHER ------------------------------//
-                    .requestMatchers("/user/whoami")
-                    .authenticated()
-                    .requestMatchers(new SelfMatcher(HttpMethod.GET, "/user/**"))
-                    .authenticated()
-                    .requestMatchers(new SelfMatcher(HttpMethod.PUT, "/user/**"))
-                    .authenticated()
-                    .requestMatchers("/**")
-                    .authenticated())
-        .formLogin(AbstractHttpConfigurer::disable)
-        .sessionManagement(e -> e.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authenticationProvider(authenticationProvider)
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-    return httpSecurity.build();
-  }
+                                        // ------------------------------ USER MATCHER ------------------------------//
+                                        .requestMatchers("/user/whoami")
+                                        .authenticated()
+                                        .requestMatchers(new SelfMatcher(HttpMethod.GET, "/user/**"))
+                                        .authenticated()
+                                        .requestMatchers(new SelfMatcher(HttpMethod.PUT, "/user/**"))
+                                        .authenticated()
+                                        .requestMatchers("/**")
+                                        .authenticated())
+                .formLogin(AbstractHttpConfigurer::disable)
+                .sessionManagement(e -> e.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        return httpSecurity.build();
+    }
 }
