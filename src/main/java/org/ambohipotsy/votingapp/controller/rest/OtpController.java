@@ -24,8 +24,8 @@ public class OtpController {
         return optService.generateOneWithVote(voteId).getValue();
     }
 
-    @GetMapping("/validate")
-    public Otp validate(@RequestParam String key) {
+    @GetMapping("/whatIAm")
+    public Otp whatIAm(@RequestParam String key) {
         otpValidator.validate(key);
         return otpMapper.toRest(optService.getOneByValue(key));
     }
