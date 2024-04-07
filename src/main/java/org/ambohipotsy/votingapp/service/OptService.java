@@ -3,8 +3,11 @@ package org.ambohipotsy.votingapp.service;
 
 import lombok.AllArgsConstructor;
 import org.ambohipotsy.votingapp.model.exceptions.BadRequestException;
+import org.ambohipotsy.votingapp.model.exceptions.NotFoundException;
 import org.ambohipotsy.votingapp.repository.OtpRepository;
+import org.ambohipotsy.votingapp.repository.VoteRepository;
 import org.ambohipotsy.votingapp.repository.entity.Otp;
+import org.ambohipotsy.votingapp.repository.entity.Vote;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -13,19 +16,26 @@ import java.util.Random;
 @AllArgsConstructor
 public class OptService {
     private final OtpRepository otpRepository;
+    private final VoteRepository voteRepository;
     private final int OTP_LENGTH = 3;
     private final String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    public Otp generateOne() {
+    private Otp generateOne(Vote vote) {
         String key = generateKey();
         boolean alreadyExist = otpRepository.existsByValue(key);
         if (alreadyExist) {
-            return generateOne();
+            return generateOne(vote);
         }
         return this.otpRepository.save(Otp.builder()
                 .isInValid(false)
                 .value(key)
+                .vote(vote)
                 .build());
+    }
+
+    public Otp generateOneWithVote(String voteId) {
+        Vote currentvote = voteRepository.findById(voteId).orElseThrow(() -> new NotFoundException("Vote with id=" + voteId + " not found."));
+        return generateOne(currentvote);
     }
 
     private String generateKey() {
@@ -42,5 +52,9 @@ public class OptService {
         Otp otp = otpRepository.getOtpByValue(key).orElseThrow(() -> new BadRequestException("The specified key don't exists."));
         otp.setInValid(true);
         otpRepository.save(otp);
+    }
+
+    public Otp getOneByValue(String value) {
+        return otpRepository.getOtpByValue(value).orElseThrow(() -> new NotFoundException("The specified key don't exist."));
     }
 }
