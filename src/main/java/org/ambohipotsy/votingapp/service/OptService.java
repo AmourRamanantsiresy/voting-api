@@ -2,10 +2,12 @@ package org.ambohipotsy.votingapp.service;
 
 
 import lombok.AllArgsConstructor;
+import org.ambohipotsy.votingapp.model.exceptions.BadRequestException;
 import org.ambohipotsy.votingapp.repository.OtpRepository;
 import org.ambohipotsy.votingapp.repository.entity.Otp;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -15,15 +17,15 @@ public class OptService {
     private final int OTP_LENGTH = 5;
     private final String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    public Otp generateOne(){
+    public Otp generateOne() {
         String key = generateKey();
         boolean alreadyExist = otpRepository.existsByValue(key);
-        if(alreadyExist){
+        if (alreadyExist) {
             return generateOne();
         }
         return this.otpRepository.save(Otp.builder()
-                        .isAlreadyUsed(false)
-                        .value(key)
+                .isAlreadyUsed(false)
+                .value(key)
                 .build());
     }
 
@@ -35,5 +37,11 @@ public class OptService {
             keyBuilder.append(CHARACTERS.charAt(randomIndex));
         }
         return keyBuilder.toString();
+    }
+
+    public void invalidateOtp(String key) {
+        Otp otp = otpRepository.getOtpByValue(key).orElseThrow(() -> new BadRequestException("The specified key don't exists."));
+        otp.setAlreadyUsed(true);
+        otpRepository.save(otp);
     }
 }

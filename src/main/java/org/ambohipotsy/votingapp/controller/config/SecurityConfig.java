@@ -32,6 +32,8 @@ public class SecurityConfig {
                                         // --------------------------- VOTE ACTION MATCHER --------------------------//
                                         .requestMatchers("/vote/{voteId}/make")
                                         .permitAll()
+                                        .requestMatchers("/vote/{voteId}/makeWithKey")
+                                        .permitAll()
                                         .requestMatchers("/vote/{voteId}/next")
                                         .permitAll()
                                         .requestMatchers("/vote/{voteId}/pv")
