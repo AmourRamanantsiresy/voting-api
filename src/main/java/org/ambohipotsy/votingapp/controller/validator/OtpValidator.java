@@ -21,7 +21,7 @@ public class OtpValidator {
         Optional<Otp> otp = otpRepository.getOtpByValue(key);
         if (otp.isEmpty()) {
             error.append("The specified key don't exists.");
-        } else if (otp.get().isAlreadyUsed()) {
+        } else if (otp.get().isInValid()) {
             error.append("The specified key is not valid anymore.");
         }
 

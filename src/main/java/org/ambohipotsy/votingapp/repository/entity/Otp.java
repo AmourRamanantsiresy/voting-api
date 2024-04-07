@@ -27,7 +27,7 @@ public class Otp {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String value;
-    private boolean isAlreadyUsed;
+    private boolean isInValid;
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;

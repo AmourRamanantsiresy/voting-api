@@ -7,14 +7,13 @@ import org.ambohipotsy.votingapp.repository.OtpRepository;
 import org.ambohipotsy.votingapp.repository.entity.Otp;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.Random;
 
 @Service
 @AllArgsConstructor
 public class OptService {
     private final OtpRepository otpRepository;
-    private final int OTP_LENGTH = 5;
+    private final int OTP_LENGTH = 3;
     private final String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     public Otp generateOne() {
@@ -24,7 +23,7 @@ public class OptService {
             return generateOne();
         }
         return this.otpRepository.save(Otp.builder()
-                .isAlreadyUsed(false)
+                .isInValid(false)
                 .value(key)
                 .build());
     }
@@ -41,7 +40,7 @@ public class OptService {
 
     public void invalidateOtp(String key) {
         Otp otp = otpRepository.getOtpByValue(key).orElseThrow(() -> new BadRequestException("The specified key don't exists."));
-        otp.setAlreadyUsed(true);
+        otp.setInValid(true);
         otpRepository.save(otp);
     }
 }
