@@ -21,7 +21,8 @@ public class VoteResultMapper {
   private final VotersActionRepository votersActionRepository;
 
   public VoteResult toRest(Vote vote) {
-    List<VoteSection> voteSections = voteSectionRepository.findAllByVoteId(vote.getId());
+    List<VoteSection> voteSections =
+        voteSectionRepository.findAllByVoteIdOrderByNameAsc(vote.getId());
     List<VotersAction> votersActions = votersActionRepository.findAllByVoteId(vote.getId());
     List<VoteSectionResult> voteSectionResults =
         voteSections.stream()

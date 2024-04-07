@@ -18,7 +18,7 @@ public class VoteCandidateService {
 
   public List<VoteCandidate> getAll(String voteSectionId, String name) {
     if (name.isBlank() || name.isEmpty()) {
-      return voteCandidateRepository.findAllByVoteSectionId(voteSectionId);
+      return voteCandidateRepository.findAllByVoteSectionIdOrderByNameAsc(voteSectionId);
     }
     return voteCandidateRepository.findAllByVoteSectionIdAndNameContainsIgnoreCase(
         voteSectionId, name);

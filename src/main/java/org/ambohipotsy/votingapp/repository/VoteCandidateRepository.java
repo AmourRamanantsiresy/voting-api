@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 public interface VoteCandidateRepository extends JpaRepository<VoteCandidate, String> {
   List<VoteCandidate> findAllByVoteSectionId(String voteSectionId);
 
+  List<VoteCandidate> findAllByVoteSectionIdOrderByNameAsc(String voteSectionId);
+
   List<VoteCandidate> findAllByVoteSectionIdAndNameContainsIgnoreCase(
       String voteSectionId, String name);
 }

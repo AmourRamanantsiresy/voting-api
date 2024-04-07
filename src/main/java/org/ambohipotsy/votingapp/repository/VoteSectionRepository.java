@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface VoteSectionRepository extends JpaRepository<VoteSection, String> {
   List<VoteSection> findAllByVoteId(String voteId);
 
+  List<VoteSection> findAllByVoteIdOrderByNameAsc(String voteId);
+
   List<VoteSection> findAllByVoteIdAndNameContains(String voteId, String name);
 }

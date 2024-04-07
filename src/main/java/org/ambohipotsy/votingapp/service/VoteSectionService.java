@@ -17,7 +17,7 @@ public class VoteSectionService {
 
   public List<VoteSection> getAll(String voteId, String name) {
     if (name.isEmpty() || name.isBlank()) {
-      return voteSectionRepository.findAllByVoteId(voteId);
+      return voteSectionRepository.findAllByVoteIdOrderByNameAsc(voteId);
     }
     return voteSectionRepository.findAllByVoteIdAndNameContains(voteId, name);
   }
