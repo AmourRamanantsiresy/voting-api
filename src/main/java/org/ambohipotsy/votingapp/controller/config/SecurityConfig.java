@@ -27,7 +27,7 @@ public class SecurityConfig {
                         e ->
                                 e
                                         // ------------------------------- OTP MATCHER ------------------------------//
-                                        .requestMatchers("/otp/whatIAm")
+                                        .requestMatchers("/otp/whatIAm/{key}")
                                         .permitAll()
                                         .requestMatchers("/otp/generate/**")
                                         .authenticated()
