@@ -24,6 +24,10 @@ public class VoteCandidateService {
         voteSectionId, name);
   }
 
+  public void deleteById(String candidateId){
+    voteCandidateRepository.deleteById(candidateId);
+  }
+
   @Transactional
   public List<VoteCandidate> saveAll(String voteSectionId, List<VoteCandidate> voteCandidates) {
     VoteSection voteSection =
