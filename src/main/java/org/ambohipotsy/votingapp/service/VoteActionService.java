@@ -45,6 +45,14 @@ public class VoteActionService {
         votersActionRepository.save(VotersAction.builder().otp(otp).vote(vote).build());
     }
 
+    public void removeVoteByOtp(String key) {
+        Otp concernedOtp = otpRepository.getOtpByValue(key).orElseThrow(() -> new NotFoundException("The specified key don't exist."));
+        voteActionRepository.deleteAllByOtpValue(key);
+        votersActionRepository.deleteAllByOtpValue(key);
+        concernedOtp.setInvalid(false);
+        otpRepository.save(concernedOtp);
+    }
+
     private void voteOne(VoteAction voteAction, Otp otp) {
         VoteSection voteSection =
                 voteSectionRepository

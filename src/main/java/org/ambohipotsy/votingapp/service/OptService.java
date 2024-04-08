@@ -27,7 +27,7 @@ public class OptService {
             return generateOne(vote);
         }
         return this.otpRepository.save(Otp.builder()
-                .isInValid(false)
+                .isInvalid(false)
                 .value(key)
                 .vote(vote)
                 .build());
@@ -50,7 +50,7 @@ public class OptService {
 
     public void invalidateOtp(String key) {
         Otp otp = otpRepository.getOtpByValue(key).orElseThrow(() -> new BadRequestException("The specified key don't exists."));
-        otp.setInValid(true);
+        otp.setInvalid(true);
         otpRepository.save(otp);
     }
 

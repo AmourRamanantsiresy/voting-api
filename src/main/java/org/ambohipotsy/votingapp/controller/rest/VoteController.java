@@ -59,6 +59,11 @@ public class VoteController {
         voteActionService.makeVote(voteId, voteActions, null);
     }
 
+    @PutMapping("/{key}/remove/")
+    public void removeVoteByOpt(@PathVariable String key) {
+        voteActionService.removeVoteByOtp(key);
+    }
+
     @PutMapping("/{voteId}/next")
     public void nextVote(@PathVariable String voteId) {
         nextVoteValidator.validate(voteId);

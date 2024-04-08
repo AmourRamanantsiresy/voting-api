@@ -29,7 +29,7 @@ public class Otp {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String value;
-    private boolean isInValid;
+    private boolean isInvalid;
     @ManyToOne
     @JoinColumn(name = "vote_id")
     private Vote vote;

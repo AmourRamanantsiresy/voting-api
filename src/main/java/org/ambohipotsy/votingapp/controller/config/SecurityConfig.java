@@ -32,6 +32,8 @@ public class SecurityConfig {
                                         .requestMatchers("/otp/generate/**")
                                         .authenticated()
                                         // --------------------------- VOTE ACTION MATCHER --------------------------//
+                                        .requestMatchers("/vote/{key}/remove")
+                                        .authenticated()
                                         .requestMatchers("/vote/{voteId}/make")
                                         .permitAll()
                                         .requestMatchers("/vote/{voteId}/makeWithKey")
