@@ -18,7 +18,7 @@ public class OptService {
     private final OtpRepository otpRepository;
     private final VoteRepository voteRepository;
     private final int OTP_LENGTH = 3;
-    private final String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private final String CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789";
 
     private Otp generateOne(Vote vote) {
         String key = generateKey();
