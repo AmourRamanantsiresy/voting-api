@@ -8,7 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,15 +26,19 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 @Table(name = "\"vote_action\"")
 public class VoteAction {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
 
-  @CreationTimestamp
-  @Column(updatable = false)
-  private LocalDateTime createdAt;
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
-  @ManyToOne
-  @JoinColumn(name = "vote_candidate_id")
-  private VoteCandidate voteCandidate;
+    @ManyToOne
+    @JoinColumn(name = "vote_candidate_id")
+    private VoteCandidate voteCandidate;
+
+    @ManyToOne
+    @JoinColumn(name = "otp_id")
+    private Otp otp;
 }

@@ -35,4 +35,8 @@ public class VotersAction {
   @ManyToOne
   @JoinColumn(name = "vote_id")
   private Vote vote;
+
+  @ManyToOne
+  @JoinColumn(name = "otp_id")
+  private Otp otp;
 }

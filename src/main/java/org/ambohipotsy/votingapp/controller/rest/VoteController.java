@@ -50,13 +50,13 @@ public class VoteController {
     @PutMapping("/{voteId}/makeWithKey")
     public void makeVoteWithKey(@PathVariable String voteId, @RequestParam String key, @RequestBody List<VoteAction> voteActions) {
         otpValidator.validate(key);
-        voteActionService.makeVote(voteId, voteActions);
+        voteActionService.makeVote(voteId, voteActions, key);
         optService.invalidateOtp(key);
     }
 
     @PutMapping("/{voteId}/make")
     public void makeVote(@PathVariable String voteId, @RequestBody List<VoteAction> voteActions) {
-        voteActionService.makeVote(voteId, voteActions);
+        voteActionService.makeVote(voteId, voteActions, null);
     }
 
     @PutMapping("/{voteId}/next")
